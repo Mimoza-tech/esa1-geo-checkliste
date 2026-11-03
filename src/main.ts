@@ -22,6 +22,18 @@ const massnahmen: Massnahme[] = [
 
 const liste = document.querySelector<HTMLUListElement>('#liste')
 const status = document.querySelector<HTMLParagraphElement>('#status')
+const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter button')
+
+let aktiverFilter: Kategorie | 'alle' = 'alle'
+
+function filterNachKategorie(eintraege: Massnahme[], kategorie: Kategorie | 'alle'): Massnahme[] {
+    if (kategorie === 'alle') return eintraege
+    return eintraege.filter((m) => m.kategorie === kategorie)
+}
+
+function zaehleErledigte(eintraege: Massnahme[]): number {
+    return eintraege.filter((m) => m.erledigt).length
+}
 
 function erstelleEintrag(m: Massnahme): string {
     return `<li class="${m.erledigt ? 'erledigt' : ''}">
@@ -30,10 +42,28 @@ function erstelleEintrag(m: Massnahme): string {
   </li>`
 }
 
-function render(eintraege: Massnahme[]): void {
+function render(): void {
     if (!liste || !status) return
-    liste.innerHTML = eintraege.map(erstelleEintrag).join('')
-    status.textContent = `${eintraege.length} Maßnahmen angezeigt`
+    const sichtbar = filterNachKategorie(massnahmen, aktiverFilter)
+    liste.innerHTML = sichtbar.map(erstelleEintrag).join('')
+    status.textContent = `${sichtbar.length} Maßnahmen angezeigt · ${zaehleErledigte(massnahmen)} von ${massnahmen.length} erledigt`
 }
 
-render(massnahmen)
+filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        aktiverFilter = button.dataset.kategorie as Kategorie | 'alle'
+        filterButtons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)))
+        render()
+    })
+})
+
+liste?.addEventListener('change', (event) => {
+    const checkbox = event.target as HTMLInputElement
+    const massnahme = massnahmen.find((m) => m.id === Number(checkbox.dataset.id))
+    if (massnahme) {
+        massnahme.erledigt = checkbox.checked
+        render()
+    }
+})
+
+render()

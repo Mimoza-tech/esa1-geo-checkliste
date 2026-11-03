@@ -1,13 +1,68 @@
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="de">
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
+    <meta name="description" content="GEO-Checkliste: So werden KMU in KI-Suchsystemen sichtbar." />
+    <title>GEO-Checkliste für KMU</title>
+</head>
+<body>
+    <header>
+        <h1>GEO-Checkliste für KMU</h1>
+        <p>Sichtbar in ChatGPT, Perplexity und Google AI Overviews</p>
+        <nav aria-label="Hauptnavigation">
+            <ul>
+                <li><a href="#was-ist-geo">Was ist GEO?</a></li>
+                <li><a href="#checkliste">Checkliste</a></li>
+                <li><a href="#tipp">Tipp</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="was-ist-geo" aria-labelledby="titel-geo">
+            <h2 id="titel-geo">Was ist GEO?</h2>
+            <p>Generative Engine Optimization (GEO) sorgt dafür, dass KI-Systeme ein Unternehmen kennen, verstehen und in Antworten empfehlen.</p>
+
+            <figure>
+                <table>
+                    <thead>
+                        <tr><th scope="col">Klassisches SEO</th><th scope="col">GEO</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Ranking in der Trefferliste</td><td>Erwähnung in der KI-Antwort</td></tr>
+                        <tr><td>Keywords</td><td>Fragen und Kontext</td></tr>
+                        <tr><td>Backlinks</td><td>Zitierfähige Quellen und Marke</td></tr>
+                    </tbody>
+                </table>
+                <figcaption>SEO und GEO im Vergleich</figcaption>
+            </figure>
+        </section>
+
+        <section id="checkliste" aria-labelledby="titel-checkliste">
+            <h2 id="titel-checkliste">Checkliste</h2>
+
+            <div class="filter" role="group" aria-label="Nach Kategorie filtern">
+                <button type="button" data-kategorie="alle" aria-pressed="true">Alle</button>
+                <button type="button" data-kategorie="technik" aria-pressed="false">Technik</button>
+                <button type="button" data-kategorie="inhalt" aria-pressed="false">Inhalt</button>
+                <button type="button" data-kategorie="marke" aria-pressed="false">Marke</button>
+            </div>
+
+            <p id="status" aria-live="polite"></p>
+            <ul id="liste"></ul>
+        </section>
+
+        <aside id="tipp" aria-labelledby="titel-tipp">
+            <h2 id="titel-tipp">Tipp</h2>
+            <p>Frag ChatGPT direkt nach deiner Branche in deiner Stadt und prüfe, ob dein Unternehmen genannt wird.</p>
+        </aside>
+    </main>
+
+    <footer>
+        <p>© 2026 Mimoza Neziri · ESA 1 Front-End Development</p>
+    </footer>
+
     <script type="module" src="/src/main.ts"></script>
-  </body>
+</body>
 </html>

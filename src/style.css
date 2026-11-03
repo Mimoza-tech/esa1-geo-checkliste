@@ -1,0 +1,111 @@
+:root {
+    --text: #1f2933;
+    --hintergrund: #f7f8fa;
+    --akzent: #1e3a5f;
+    --hell: #ffffff;
+    --rand: #d0d7de;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--hintergrund);
+}
+
+header, footer {
+    background: var(--akzent);
+    color: var(--hell);
+    padding: 1.5rem 1rem;
+}
+
+    header h1 {
+        margin: 0 0 0.25rem;
+    }
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0;
+    margin: 1rem 0 0;
+}
+
+nav a {
+    color: var(--hell);
+}
+
+main {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+section, aside {
+    background: var(--hell);
+    border: 1px solid var(--rand);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid var(--rand);
+    padding: 0.5rem;
+    text-align: left;
+}
+
+figcaption {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+    .filter button {
+        padding: 0.5rem 1rem;
+        border: 2px solid var(--akzent);
+        border-radius: 999px;
+        background: var(--hell);
+        color: var(--akzent);
+        cursor: pointer;
+        font: inherit;
+    }
+
+        .filter button[aria-pressed="true"] {
+            background: var(--akzent);
+            color: var(--hell);
+        }
+
+#liste {
+    list-style: none;
+    padding: 0;
+}
+
+    #liste li {
+        border-bottom: 1px solid var(--rand);
+        padding: 0.75rem 0;
+    }
+
+        #liste li.erledigt label {
+            text-decoration: line-through;
+        }
+
+footer {
+    text-align: center;
+}

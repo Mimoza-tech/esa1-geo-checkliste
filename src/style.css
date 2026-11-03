@@ -1,9 +1,15 @@
+/* ---------- Farben und Grundwerte ---------- */
 :root {
     --text: #1f2933;
+    --text-leise: #52606d;
     --hintergrund: #f7f8fa;
     --akzent: #1e3a5f;
+    --akzent-hell: #e8eef6;
     --hell: #ffffff;
     --rand: #d0d7de;
+    --erfolg: #1a7f4b;
+    --schatten: 0 1px 3px rgba(16, 24, 40, 0.08), 0 4px 12px rgba(16, 24, 40, 0.06);
+    --breite: 48rem;
 }
 
 * {
@@ -13,46 +19,87 @@
 body {
     margin: 0;
     font-family: system-ui, sans-serif;
+    font-size: 1.0625rem;
     line-height: 1.6;
     color: var(--text);
     background: var(--hintergrund);
 }
 
-header, footer {
-    background: var(--akzent);
+/* ---------- Header ---------- */
+header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
     color: var(--hell);
-    padding: 1.5rem 1rem;
+    padding: 3rem 1rem 2rem;
+    text-align: center;
 }
 
-    header h1 {
-        margin: 0 0 0.25rem;
+    header h1,
+    header p,
+    header nav {
+        max-width: var(--breite);
+        margin-left: auto;
+        margin-right: auto;
     }
 
+    header h1 {
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        letter-spacing: -0.02em;
+        margin-top: 0;
+        margin-bottom: 0.25rem;
+    }
+
+    header p {
+        opacity: 0.9;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+/* ---------- Navigation ---------- */
 nav ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    justify-content: center;
+    gap: 1.25rem;
     padding: 0;
-    margin: 1rem 0 0;
+    margin: 1.25rem 0 0;
 }
 
 nav a {
     color: var(--hell);
+    text-decoration: none;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
 }
 
+    nav a:hover {
+        border-bottom-color: var(--hell);
+    }
+
+/* ---------- Hauptbereich ---------- */
 main {
     max-width: 50rem;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
 }
 
-section, aside {
+section,
+aside {
     background: var(--hell);
-    border: 1px solid var(--rand);
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--schatten);
+    padding: 1.5rem 2rem;
     margin-bottom: 1.5rem;
+}
+
+h2 {
+    margin-top: 0;
+    color: var(--akzent);
+}
+
+/* ---------- Tabelle ---------- */
+figure {
+    margin: 1.5rem 0 0;
 }
 
 table {
@@ -60,17 +107,25 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     border: 1px solid var(--rand);
-    padding: 0.5rem;
+    padding: 0.5rem 0.75rem;
     text-align: left;
+}
+
+th {
+    background: var(--akzent-hell);
 }
 
 figcaption {
     font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-leise);
     margin-top: 0.5rem;
 }
 
+/* ---------- Filter-Buttons ---------- */
 .filter {
     display: flex;
     flex-wrap: wrap;
@@ -85,166 +140,96 @@ figcaption {
         color: var(--akzent);
         cursor: pointer;
         font: inherit;
+        transition: background 0.15s, color 0.15s;
     }
 
-        .filter button[aria-pressed="true"] {
+        .filter button:hover {
+            background: var(--akzent-hell);
+        }
+
+        .filter button[aria-pressed="true"],
+        .filter button[aria-pressed="true"]:hover {
             background: var(--akzent);
             color: var(--hell);
         }
 
-#liste {
-    list-style: none;
-    padding: 0;
-}
-
-    #liste li {
-        border-bottom: 1px solid var(--rand);
-        padding: 0.75rem 0;
-    }
-
-        #liste li.erledigt label {
-            text-decoration: line-through;
-        }
-
-footer {
-    text-align: center;
-}
-
-/* ---------- UX-Verfeinerung ---------- */
-:root {
-    --akzent-hell: #e8eef6;
-    --erfolg: #1a7f4b;
-    --schatten: 0 1px 3px rgba(16, 24, 40, 0.08), 0 4px 12px rgba(16, 24, 40, 0.06);
-}
-
-body {
-    font-size: 1.0625rem;
-}
-
-header {
-    background: linear-gradient(135deg, #1e3a5f 0%, #2c5282 100%);
-    padding: 3rem 1rem 2rem;
-}
-
-    header > * {
-        max-width: 50rem;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    header h1 {
-        font-size: clamp(1.75rem, 5vw, 2.5rem);
-        letter-spacing: -0.02em;
-    }
-
-    header p {
-        opacity: 0.9;
-        margin: 0;
-    }
-
-nav a {
-    text-decoration: none;
-    padding: 0.25rem 0;
-    border-bottom: 2px solid transparent;
-}
-
-    nav a:hover {
-        border-bottom-color: var(--hell);
-    }
-
-section, aside {
-    border: none;
-    border-radius: 12px;
-    box-shadow: var(--schatten);
-    padding: 1.5rem 2rem;
-}
-
-h2 {
-    margin-top: 0;
-    color: var(--akzent);
-}
-
-th {
-    background: var(--akzent-hell);
-}
-
-figcaption {
-    color: #52606d;
-    font-style: italic;
-}
-
-.filter button {
-    transition: background 0.15s, color 0.15s;
-}
-
-    .filter button:hover {
-        background: var(--akzent-hell);
-    }
-
-    .filter button[aria-pressed="true"]:hover {
-        background: var(--akzent);
-    }
-
+/* ---------- Checkliste ---------- */
 #status {
-    color: #52606d;
+    color: var(--text-leise);
     font-size: 0.95rem;
     margin: 1rem 0 0.5rem;
 }
 
-#liste li {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.85rem 1rem;
-    margin-bottom: 0.5rem;
-    border: 1px solid var(--rand);
-    border-radius: 8px;
-    transition: background 0.15s, border-color 0.15s;
+#liste {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-    #liste li:hover {
-        background: var(--hintergrund);
+    #liste li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.85rem 1rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid var(--rand);
+        border-radius: 8px;
+        transition: background 0.15s, border-color 0.15s;
     }
 
-    #liste li.erledigt {
-        background: #f0faf4;
-        border-color: #b7e4c7;
-    }
-
-        #liste li.erledigt label {
-            color: #52606d;
+        #liste li:hover {
+            background: var(--hintergrund);
         }
 
-#liste input[type="checkbox"] {
-    width: 1.25rem;
-    height: 1.25rem;
-    accent-color: var(--erfolg);
-    cursor: pointer;
-    flex-shrink: 0;
-}
+        #liste li.erledigt {
+            background: #f0faf4;
+            border-color: #b7e4c7;
+        }
 
-#liste label {
-    cursor: pointer;
-    flex: 1;
-}
+            #liste li.erledigt label {
+                color: var(--text-leise);
+                text-decoration: line-through;
+            }
 
+    #liste input[type="checkbox"] {
+        width: 1.25rem;
+        height: 1.25rem;
+        accent-color: var(--erfolg);
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    #liste label {
+        cursor: pointer;
+        flex: 1;
+    }
+
+/* ---------- Tipp-Box ---------- */
 aside {
     background: var(--akzent-hell);
     border-left: 4px solid var(--akzent);
 }
 
+/* ---------- Footer ---------- */
+footer {
+    background: var(--akzent);
+    color: var(--hell);
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+}
+
+/* ---------- Tastatur-Fokus ---------- */
 :focus-visible {
     outline: 3px solid #f0b429;
     outline-offset: 2px;
 }
 
-footer {
-    margin-top: 2rem;
-    font-size: 0.9rem;
-}
-
+/* ---------- Handy ---------- */
 @media (max-width: 600px) {
-    section, aside {
+    section,
+    aside {
         padding: 1.25rem;
     }
 }
